@@ -62,10 +62,14 @@ def run_simulation():
     """The learning is online so only one function is running
     the all simulation + learning.
     """
+    actor = ActorNet()
+    critic = CriticNet()
+
     fcas_market = FCASMarket()
     battery = Battery()
     end = False
     index = 0
+    
     while not end:
         timestamp = fcas_market.get_timestamp()
         print('timestamp: %s' % timestamp)

@@ -43,7 +43,7 @@ class CriticNet(nn.Module):
     # 2 artificial time-dependent features.
 
     def __init__(self):
-        super(ActorNet, self).__init__()
+        super(CriticNet, self).__init__()
 
         self.fc1 = nn.Linear(5, 5)
         self.fc2 = nn.Linear(5, 8)
@@ -54,3 +54,14 @@ class CriticNet(nn.Module):
         x = F.relu(self.fc2(x))
         x = self.fc3(x)
         return x
+
+# code to create a NN
+net = ActorNet()
+input = torch.randn(1, 5)
+# feed forward
+out = net(input)
+# get rid of stored gradients
+net.zero_grad()
+# backpropogates the gradient wrt the output layer
+# the argument should be a tensor of ones that matches the size of the output
+out.backward(torch.ones(1,3))
